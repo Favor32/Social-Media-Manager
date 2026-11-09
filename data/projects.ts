@@ -249,8 +249,7 @@ export const workCategories: WorkCategory[] = [
     ),
   },
   {
-    // The large video files are added by hand to
-    // /public/gallery/video-editing-voiceover/.
+    
     slug: "video-editing-voiceover",
     name: "Video Editing & Voiceover",
     description: "Sample edited video and voiceover work.",

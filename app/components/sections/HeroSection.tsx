@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/data/site";
-import TypeText, { typingEnd } from "../ui/TypeText";
+import TypeText from "../ui/TypeText";
+
+const typingEnd = (text: string, delay: number, speed: number) =>
+  delay + text.length * speed;
 
 // Typing schedule (milliseconds): role, then the name on two lines, then the
 // tagline. Each piece starts when the one before it finishes.
