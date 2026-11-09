@@ -14,7 +14,7 @@ export const site = {
     // Facebook account name: "Paul Omowunmi". Paste the link to the profile
     // between the quotes below (Facebook > your profile > Copy link). The
     // icon stays hidden until a link is added.
-    { name: "Facebook", url: "https://facebook.com/Paul Omowunmi" },
+    { name: "Facebook", url: "" },
   ],
 } as const;
 

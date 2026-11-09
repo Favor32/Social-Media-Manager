@@ -147,7 +147,7 @@ export const workCategories: WorkCategory[] = [
     media: photos(
       "captions",
       ["captions.jpg"],
-
+      "Caption sample"
     ),
   },
   {

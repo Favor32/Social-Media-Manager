@@ -19,7 +19,7 @@ export default function SocialLinks({
   const links = [
     // A social with an empty link is hidden.
     ...site.socials
-      .filter((s) => s.url !== "")
+      .filter((s) => s.url.length > 0)
       .map((s) => ({ name: s.name, url: s.url, icon: icons[s.name] })),
     { name: "Email", url: `mailto:${site.email}`, icon: FaEnvelope },
   ];
