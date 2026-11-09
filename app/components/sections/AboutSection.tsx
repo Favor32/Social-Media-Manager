@@ -50,7 +50,7 @@ export default function AboutSection() {
 
         {/* No box or background: the portrait sits directly on the page. A thin
             orange ring and floating tags frame her. */}
-        <div className="relative min-h-[28rem] sm:min-h-[36rem] lg:min-h-[44rem]">
+        <div className="relative aspect-[4/5] sm:aspect-[5/4] lg:aspect-auto lg:min-h-[44rem]">
           <div
             aria-hidden="true"
             className="absolute left-1/2 top-[14%] aspect-square w-[84%] -translate-x-1/2 rounded-full border-2 border-accent/50"
@@ -63,11 +63,11 @@ export default function AboutSection() {
             sizes="(min-width: 1024px) 45vw, 100vw"
             className="object-contain object-bottom"
           />
-          <ul aria-hidden="true" className="hidden md:block">
+          <ul aria-hidden="true">
             {focusAreas.map((area, i) => (
               <li
                 key={area.title}
-                className={`animate-float absolute z-10 rounded-full px-5 py-2 text-sm font-medium shadow-lg ${tagStyles[i % tagStyles.length]}`}
+                className={`animate-float absolute z-10 rounded-full px-3 py-1.5 text-xs font-medium shadow-lg md:px-5 md:py-2 md:text-sm ${tagStyles[i % tagStyles.length]}`}
                 style={{ animationDelay: `${i * 500}ms` }}
               >
                 {area.title}
