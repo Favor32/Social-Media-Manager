@@ -238,6 +238,17 @@ export const workCategories: WorkCategory[] = [
     ),
   },
   {
+    slug: "flyer",
+    name: "Flyer Graphics",
+    description:
+      "Eye-catching flyers designed to promote events, offers and announcements while keeping the brand's look consistent.",
+    media: photos(
+      "flyers",
+      ["photo_2026-11-08_15-59-41.jpg"],
+       "Flyer design sample",
+    ),
+  },
+  {
     // The large video files are added by hand to
     // /public/gallery/video-editing-voiceover/.
     slug: "video-editing-voiceover",
