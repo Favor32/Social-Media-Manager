@@ -1,0 +1,282 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Brand palette (chocolate + cream). Use these names in class names,
+   e.g. bg-chocolate, text-cream, border-taupe/40.
+   ------------------------------------------------------------------ */
+@theme {
+  --color-chocolate: #5b3321; /* main brown: lively cocoa, not near-black */
+  --color-espresso: #7a4630; /* lighter mocha brown for alternating dark sections */
+  --color-cream: #f5ebdd; /* main light background */
+  --color-paper: #fbf6ee; /* lighter cream for highlights */
+  --color-taupe: #b99b7d; /* soft neutral for lines */
+  --color-sand: #e8d3b3; /* secondary text on brown backgrounds */
+  --color-accent: #e8742a; /* burnt orange: buttons, icons, large text */
+  --color-glow: #f6a56b; /* light burnt orange for small text on brown */
+  --color-copper: #ae4511; /* deep burnt orange for text on cream (readable) */
+  --color-ink: #2e1a10; /* very dark brown, for text placed on orange */
+  --color-muted: #6f4f3b; /* body copy on cream */
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-heading: var(--font-outfit);
+}
+
+/* ------------------------------ Base ------------------------------ */
+:root {
+  --focus: var(--color-copper);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 90%;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-chocolate);
+  font-family: var(--font-sans), system-ui, Arial, sans-serif;
+}
+
+/* Dark sections switch the keyboard focus ring to the lighter orange. */
+.surface-dark {
+  --focus: var(--color-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+/* ---------------------------- Components ---------------------------- */
+@layer components {
+  /* Side padding shared by every section. Content uses the full screen width. */
+  .container-x {
+    margin-inline: auto;
+    width: 100%;
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .container-x {
+      padding-inline: 3rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-x {
+      padding-inline: 5rem;
+    }
+  }
+
+  /* Vertical rhythm for sections. */
+  .section-y {
+    padding-block: 4.5rem;
+  }
+  @media (min-width: 768px) {
+    .section-y {
+      padding-block: 7rem;
+    }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.75rem;
+    border: 1px solid transparent;
+    border-radius: 9999px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease;
+  }
+  /* Headings use a medium weight of the heading font. */
+  .font-heading {
+    font-weight: 500;
+  }
+  .btn-accent {
+    background: var(--color-accent);
+    color: var(--color-ink);
+  }
+  .btn-accent:hover {
+    background: var(--color-cream);
+    color: var(--color-chocolate);
+  }
+  .btn-dark {
+    background: var(--color-chocolate);
+    color: var(--color-cream);
+  }
+  .btn-dark:hover {
+    background: var(--color-ink);
+  }
+  .btn-line-light {
+    border-color: color-mix(in srgb, var(--color-cream) 45%, transparent);
+    color: var(--color-cream);
+  }
+  .btn-line-light:hover {
+    border-color: var(--color-cream);
+    background: color-mix(in srgb, var(--color-cream) 10%, transparent);
+  }
+  .btn-line-dark {
+    border-color: color-mix(in srgb, var(--color-chocolate) 40%, transparent);
+    color: var(--color-chocolate);
+  }
+  .btn-line-dark:hover {
+    background: var(--color-chocolate);
+    color: var(--color-cream);
+  }
+
+  /* A section that overlaps the one above with softly rounded top corners. */
+  .section-round {
+    position: relative;
+    margin-top: -2.5rem;
+    border-radius: 2.5rem 2.5rem 0 0;
+  }
+  @media (min-width: 768px) {
+    .section-round {
+      margin-top: -3rem;
+      border-radius: 3rem 3rem 0 0;
+    }
+  }
+
+  /* Warm brown-to-burnt-orange backgrounds. */
+  .bg-warm {
+    background: linear-gradient(115deg, #5b3321 0%, #5b3321 38%, #7d3f1f 68%, #b8531e 100%);
+  }
+  .bg-orange-warm {
+    background: linear-gradient(135deg, #e8742a 0%, #dc6420 100%);
+  }
+
+  /* Scroll reveal (see components/ui/Reveal.tsx). */
+  .reveal {
+    transition:
+      opacity 0.8s ease,
+      transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .reveal-hidden-rise {
+    opacity: 0;
+    transform: translateY(2.5rem);
+  }
+  .reveal-hidden-pop {
+    opacity: 0;
+    transform: scale(0.8) rotate(-3deg);
+  }
+
+  /* Underline that slides in on hover (used for text links). */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0 1px;
+    transition: background-size 0.3s ease;
+  }
+  .link-underline:hover,
+  .link-underline[aria-current="page"] {
+    background-size: 100% 1px;
+  }
+}
+
+/* --------------------------- Hero entrance --------------------------- */
+/* Used for buttons that fade in once the hero text has typed. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* The bouncing focus cards (About page). */
+@keyframes gentle-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.animate-gentle-bounce {
+  animation: gentle-bounce 2.5s ease-in-out infinite;
+}
+
+/* Slow floating, used on tool icons and the About page tags. */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(3deg);
+  }
+}
+
+.animate-float {
+  animation: float 3.6s ease-in-out infinite;
+}
+
+/* Typing effect: each letter appears in turn (see components/ui/TypeText.tsx). */
+@keyframes type-in {
+  to {
+    opacity: 1;
+  }
+}
+
+.type-char {
+  opacity: 0;
+  animation: type-in 1ms steps(1, end) forwards;
+}
+
+/* A blinking cursor that shows a few times after typing finishes, then goes. */
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.type-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 4px;
+  vertical-align: text-bottom;
+  background: var(--color-accent);
+  opacity: 0;
+  animation: caret-blink 0.9s step-end 5 forwards;
+}
+
+/* Respect visitors who ask their device for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
